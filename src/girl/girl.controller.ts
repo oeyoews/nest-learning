@@ -15,9 +15,9 @@ export class GirlController {
     return this.girlService.addGirl(body);
   }
 
-  @Get('/getGirlById')
-  getGirById(@Query() query) {
-    let id: number = Number(query.id);
+  @Get('/findGirlById/:id')
+  findGirlById(@Request() req) {
+    let id: number = Number(req.params.id);
     return this.girlService.getGirlById(id);
   }
 }

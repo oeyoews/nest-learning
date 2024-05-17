@@ -45,9 +45,16 @@ export class GirlService {
       },
     ];
 
+    if (!data.find((item) => item.id === id)) {
+      return {
+        code: 400,
+        msg: '数据不存在',
+      };
+    }
+
     return {
       code: 200,
-      data: data[id - 1],
+      data: data.find((item) => item.id === id),
       msg: '获取成功',
     };
   }
