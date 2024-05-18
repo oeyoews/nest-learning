@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GirlController } from './girl.controller';
 import { GirlService } from './girl.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Girl } from './girl.entity';
+import { Girl } from './entities/girl.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Girl])],

@@ -10,4 +10,10 @@ export class Girl {
 
   @Column({ type: 'int' })
   age: number;
+
+  @Column({ type: 'array' })
+  skill: Array<string>;
+
+  @Column({ type: 'int' })
+  timestamp: number;
 }

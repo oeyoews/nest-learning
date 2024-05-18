@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Girl } from './girl.entity';
+import { Girl } from './entities/girl.entity';
 
 @Injectable()
 export class GirlService {
@@ -11,11 +11,26 @@ export class GirlService {
     return this.girlRepo.find();
   }
 
-  async addGirl({ name, age }) {
+  async addGirl({ name, age, skill }) {
     const girl = new Girl();
     girl.name = name;
     girl.age = age;
+    girl.skill = skill;
+    girl.timestamp = new Date().getTime();
     return this.girlRepo.save(girl);
+  }
+
+  updateGirl(id: number, data: { age: number }) {
+    const girl = new Girl();
+    girl.age = data.age;
+    return this.girlRepo.update(id, girl);
+  }
+
+  deleteGirl(id: number) {
+    if (!id) {
+      console.error('参数不正确', `${id}: id`);
+    }
+    return this.girlRepo.delete(id);
   }
 
   getGirlById(id: number) {

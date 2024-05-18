@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Girl } from './girl/girl.entity';
+import { Girl } from './girl/entities/girl.entity';
 
 /** A basic service with a single method. */
 @Injectable()

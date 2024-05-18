@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/girl/delete/66481a01cbb0cab1852cafd7 HTTP/1.1

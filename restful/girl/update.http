@@ -1,0 +1,6 @@
+POST  http://localhost:3000/api/girl/update/66480371e285f3dd3e15938c HTTP/1.1
+Content-Type: application/json
+
+{
+	"age": 18
+}
