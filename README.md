@@ -47,3 +47,4 @@ nest g resources
 * 启动docker 对应的镜像的时候, docker dameon(守护程序) 应该先打开(Windows10(11) 直接打开docker desktop 即可)
 * 如果希望避开权限问题, 不要制定database, 默认就会创建一个test
 * 如果希望制定对应的数据库表, 需要手动使用mongodb 创建对应的权限(需要自行了解docker 和mongodb 的相关内容)
+* 如果不希望使用docker, 可以直接使用mongodb 的免费云端数据库(网络或者账户问题, 需要自备梯子)
