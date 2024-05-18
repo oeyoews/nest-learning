@@ -1,7 +1,8 @@
 {
 	"recommendations": [
 		"humao.rest-client",
-		"mongodb.mongodb-vscode"
+		"mongodb.mongodb-vscode",
+		"rangav.vscode-thunder-client"
 		// "eamodio.gitlens"
 	],
 }

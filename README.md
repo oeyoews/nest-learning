@@ -1,27 +1,30 @@
-## API Docs
+> 这是一个 nestjs 学习项目, 支持 swagger, mongodb(docker).
+
+## API Docs Address
 
 > localhost:3000/swagger
 
-## 导入apifox
+## 导入 APIFOX
 
 > localhost:3000/swagger.json
 
 ## TODO
 
 * use mongodb docker local
+* 支持自动 import/export
 
-## cli
+## CLI
 
 * nodejs
 * docker(or docker desktop)
 * pnpm(or npm)
 * git
 
-## 云端mongodb
+## 云端 MONGODB
 
-## 本地mongodb
+## 本地 MONGODB
 
-## mongodb 权限管理
+## MONGODB 权限管理
 
 ```bash
 docker containers ls  # 获取对应的 container id
@@ -48,3 +51,4 @@ nest g resources
 * 如果希望避开权限问题, 不要制定database, 默认就会创建一个test
 * 如果希望制定对应的数据库表, 需要手动使用mongodb 创建对应的权限(需要自行了解docker 和mongodb 的相关内容)
 * 如果不希望使用docker, 可以直接使用mongodb 的免费云端数据库(网络或者账户问题, 需要自备梯子)
+* 支持swagger, apifox, restful-client, thunder-client
