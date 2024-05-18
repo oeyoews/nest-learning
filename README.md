@@ -40,3 +40,7 @@ nest g resources
 ```
 
 
+## Recipes
+
+* mongodb compress(application) or mongodb express(docker image)
+* mongodb for vscode(extensions)
