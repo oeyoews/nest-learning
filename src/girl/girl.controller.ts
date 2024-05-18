@@ -10,16 +10,17 @@ import {
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
+  ApiBody,
   ApiOperation,
   ApiProperty,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { GirlService } from './girl.service';
-// import { CreateCatDto } from './dto/create-girl-dto';
+import { CreateCatDto } from './dto/create-girl-dto';
 import { Girl } from './entities/girl.entity';
 
-// @ApiBearerAuth()
 @ApiTags('girl')
 @Controller('girl')
 export class GirlController {
@@ -36,25 +37,39 @@ export class GirlController {
     return this.girlService.getGirls();
   }
 
+  @ApiOperation({ summary: '新增数据' })
+  @ApiResponse({
+    status: 200,
+    description: '添加数据成功',
+    type: CreateCatDto,
+  })
   @Post('/add')
-  addGirl(@Body() body) {
+  addGirl(@Body() body: CreateCatDto) {
     return this.girlService.addGirl(body);
   }
 
+  @ApiOperation({ summary: '删除数据' })
+  @ApiProperty({ description: 'id', default: '6648516cbc17f9dc50a70793' })
   @Get('/delete/:id')
-  deleteGirl(@Param() params): any {
-    // NOTE: 这里 id 不是 number 类型
-    return this.girlService.deleteGirl(params.id);
+  deleteGirl(@Param('id') id): any {
+    return this.girlService.deleteGirl(id);
   }
 
+  @ApiOperation({ summary: '更新数据' })
   @Post('/update/:id')
-  updateGirl(@Param() params, @Body() body) {
-    return this.girlService.updateGirl(params.id, body);
+  updateGirl(@Param('id') id: string, @Body() body: CreateCatDto) {
+    return this.girlService.updateGirl(id, body);
   }
 
+  @ApiOperation({ summary: '根据id查询女性名单' })
   @Get('/findGirlById/:id')
-  findGirlById(@Param() params) {
-    let id: number = Number(params.id);
+  findGirlById(@Param('id') id) {
     return this.girlService.getGirlById(id);
+  }
+
+  @ApiOperation({ summary: '根据名字模糊查询女性名单' })
+  @Get('/findGirlByName/:name')
+  findGirlByName(@Param('name') name) {
+    return this.girlService.getGirlByName(name);
   }
 }

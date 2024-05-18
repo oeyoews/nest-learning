@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Girl } from './entities/girl.entity';
+import { CreateCatDto } from './dto/create-girl-dto';
 
 @Injectable()
 export class GirlService {
@@ -11,7 +12,7 @@ export class GirlService {
     return this.girlRepo.find();
   }
 
-  async addGirl({ name, age, skill }) {
+  async addGirl({ name, age, skill }: CreateCatDto) {
     const girl = new Girl();
     girl.name = name;
     girl.age = age;
@@ -20,7 +21,7 @@ export class GirlService {
     return this.girlRepo.save(girl);
   }
 
-  updateGirl(id: number, data: { age: number }) {
+  updateGirl(id: string, data: { age: number }) {
     const girl = new Girl();
     girl.age = data.age;
     return this.girlRepo.update(id, girl);
@@ -31,6 +32,19 @@ export class GirlService {
       console.error('参数不正确', `${id}: id`);
     }
     return this.girlRepo.delete(id);
+  }
+
+  getGirlByName(name: string): Promise<Girl[]> {
+    return this.girlRepo.find({
+      where: {
+        // name: Like(`%${name}%`),
+        name,
+      },
+      order: {
+        name: 'asc',
+        age: 'desc',
+      },
+    });
   }
 
   getGirlById(id: number) {

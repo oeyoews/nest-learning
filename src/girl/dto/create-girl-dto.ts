@@ -1,12 +1,12 @@
-import { IsArray, IsInt, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateCatDto {
-  @IsString()
+  @ApiProperty({ description: 'name', default: 'lily', type: String })
   readonly name: string;
 
-  @IsInt()
+  @ApiProperty({ description: 'age', default: 18, minimum: 10, type: Number })
   readonly age: number;
 
-  @IsArray()
-  readonly skills: [];
+  @ApiProperty({ description: 'skill', default: [], type: [String] })
+  readonly skill: [];
 }

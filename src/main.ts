@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import fs from 'fs';
 
 /** The entry file of the application which uses the core function NestFactory to create a Nest application instance.*/
 async function bootstrap() {
@@ -21,10 +20,12 @@ async function bootstrap() {
   // https://stackoverflow.com/questions/51732236/generate-swagger-documentation-as-json-yaml-in-nestjs
   SwaggerModule.setup('/swagger', app, document, {
     jsonDocumentUrl: '/swagger.json',
+    explorer: true,
+    useGlobalPrefix: false,
   });
 
   await app.listen(port);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`Application is running on: ${await app.getUrl()}/swagger`);
 }
 
 bootstrap();
