@@ -1,11 +1,19 @@
-import { Controller, Get, Post, Request, Query, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Request,
+  Query,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { GirlService } from './girl.service';
 
 @Controller('girl')
 export class GirlController {
   constructor(private readonly girlService: GirlService) {}
 
-  @Get()
+  @Get('list')
   getGirls() {
     return this.girlService.getGirls();
   }
@@ -16,8 +24,8 @@ export class GirlController {
   }
 
   @Get('/findGirlById/:id')
-  findGirlById(@Request() req) {
-    let id: number = Number(req.params.id);
+  findGirlById(@Param() params) {
+    let id: number = Number(params.id);
     return this.girlService.getGirlById(id);
   }
 }

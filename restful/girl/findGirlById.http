@@ -1,2 +1,2 @@
 
-GET http://localhost:3000/api/girl/findGirlById/28 HTTP/1.1
+GET http://localhost:3000/api/girl/findGirlById/2 HTTP/1.1

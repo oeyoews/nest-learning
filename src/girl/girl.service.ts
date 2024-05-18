@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Girl } from './girl.entity';
 
 @Injectable()
 export class GirlService {
+  constructor(@InjectRepository(Girl) private girlRepo: Repository<Girl>) {}
+
   getGirls() {
-    return {
-      code: 200,
-      data: [1, 2],
-      msg: '列表请求成功',
-    };
+    return this.girlRepo.find();
   }
 
-  addGirl(data) {
-    return {
-      code: 200,
-      data,
-      msg: '添加成功',
-    };
+  async addGirl({ name, age }) {
+    const girl = new Girl();
+    girl.name = name;
+    girl.age = age;
+    return this.girlRepo.save(girl);
   }
 
   getGirlById(id: number) {
@@ -32,6 +32,11 @@ export class GirlService {
         id: 1,
         name: 'lily',
         age: 18,
+      },
+      {
+        id: 1,
+        name: 'lily2',
+        age: 19,
       },
       {
         id: 2,
