@@ -13,9 +13,11 @@
 * 自增id
 * use mongodb docker local
 * 支持自动 import/export
+* hmr
 
 ## CLI
 
+* 中间件 (middleware) 访问记录
 * nodejs
 * docker(or docker desktop)
 * pnpm(or npm)
