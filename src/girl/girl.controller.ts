@@ -15,6 +15,8 @@ import { Girl } from './entities/girl.entity';
 export class GirlController {
   constructor(private readonly girlService: GirlService) {}
 
+  // TODO 分页查询
+
   @ApiOperation({ summary: '获取所有女性名单' })
   @ApiResponse({
     status: 200,
@@ -28,7 +30,6 @@ export class GirlController {
   }
 
   @ApiOperation({ summary: '新增数据' })
-  @ApiParam({ name: 'body', description: '要新增的数据', type: CreateGirlDto })
   @ApiBody({ type: CreateGirlDto })
   @ApiResponse({
     status: 200,
@@ -48,18 +49,21 @@ export class GirlController {
   }
 
   @ApiOperation({ summary: '更新数据' })
+  @ApiBody({ type: CreateGirlDto })
   @Post('/update/:id')
   updateGirl(@Param('id') id: string, @Body() body: CreateGirlDto) {
     return this.girlService.updateGirl(id, body);
   }
 
   @ApiOperation({ summary: '根据id查询女性名单' })
+  @ApiParam({ name: 'id', description: '要查询的女性名单的ID' })
   @Get('/findGirlById/:id')
   findGirlById(@Param('id') id) {
     return this.girlService.getGirlById(id);
   }
 
   @ApiOperation({ summary: '根据名字模糊查询女性名单' })
+  @ApiParam({ name: 'name', description: '要查询的女性名单的名字' })
   @Get('/findGirlByName/:name')
   findGirlByName(@Param('name') name) {
     return this.girlService.getGirlByName(name);
