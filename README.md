@@ -10,6 +10,7 @@
 
 ## TODO
 
+* cors middleware
 * 自增id
 * use mongodb docker local
 * 支持自动 import/export

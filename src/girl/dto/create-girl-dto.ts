@@ -1,6 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export class CreateGirlDto {
+export class GirlDto {
   @ApiProperty({ description: 'name', default: 'lily', type: String })
   readonly name: string;
 
@@ -13,11 +13,10 @@ export class CreateGirlDto {
   })
   readonly age: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'skill',
     default: [],
     type: [String],
-    required: false,
   })
   readonly skill: [];
 }

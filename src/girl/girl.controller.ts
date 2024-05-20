@@ -7,7 +7,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { GirlService } from './girl.service';
-import { CreateGirlDto } from './dto/create-girl-dto';
+import { GirlDto } from './dto/create-girl-dto';
 import { Girl } from './entities/girl.entity';
 
 @ApiTags('girl')
@@ -21,7 +21,7 @@ export class GirlController {
   @ApiResponse({
     status: 200,
     description: '返回所有女性名单',
-    type: CreateGirlDto,
+    type: GirlDto,
     isArray: true,
   })
   @Get('/list')
@@ -30,14 +30,14 @@ export class GirlController {
   }
 
   @ApiOperation({ summary: '新增数据' })
-  @ApiBody({ type: CreateGirlDto })
+  @ApiBody({ type: GirlDto })
   @ApiResponse({
     status: 200,
     description: '添加数据成功',
-    type: CreateGirlDto,
+    type: GirlDto,
   })
   @Post('/add')
-  addGirl(@Body() body: CreateGirlDto) {
+  addGirl(@Body() body: GirlDto) {
     return this.girlService.addGirl(body);
   }
 
@@ -49,9 +49,9 @@ export class GirlController {
   }
 
   @ApiOperation({ summary: '更新数据' })
-  @ApiBody({ type: CreateGirlDto })
+  @ApiBody({ type: GirlDto })
   @Post('/update/:id')
-  updateGirl(@Param('id') id: string, @Body() body: CreateGirlDto) {
+  updateGirl(@Param('id') id: string, @Body() body: GirlDto) {
     return this.girlService.updateGirl(id, body);
   }
 

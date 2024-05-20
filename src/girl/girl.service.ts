@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Girl } from './entities/girl.entity';
-import { CreateGirlDto } from './dto/create-girl-dto';
+import { GirlDto } from './dto/create-girl-dto';
 
 @Injectable()
 export class GirlService {
@@ -25,7 +25,7 @@ export class GirlService {
    * @param param0 - 新女孩的信息。
    * @returns 新添加的女孩信息。
    */
-  async addGirl({ name, age, skill }: CreateGirlDto) {
+  async addGirl({ name, age, skill }: GirlDto) {
     const girl = new Girl();
     girl.name = name;
     girl.age = age;
